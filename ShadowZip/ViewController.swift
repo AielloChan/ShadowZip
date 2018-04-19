@@ -41,5 +41,11 @@ class ViewController: NSViewController {
         NSApp.terminate(self)
     }
     
+    @IBAction func logoClick(_ sender: NSButton) {
+        if let url = URL(string: "https://github.com/AielloChan/ShadowZip"), NSWorkspace.shared.open(url) {
+            print("default browser was successfully opened")
+        }
+    }
+    
 }
 
