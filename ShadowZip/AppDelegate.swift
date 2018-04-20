@@ -10,6 +10,7 @@ import Cocoa
 import Zip
 
 let TMP_DIR = URL(string:NSTemporaryDirectory())!.appendingPathComponent("com.aiellochan.shadowzip")
+let DEBUG = false
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -17,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let popover = NSPopover()
     var eventMonitor: EventMonitor?
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
@@ -65,7 +66,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case NSEvent.EventType.rightMouseUp:
             handleRightClick(sender)
         default:
-            print("none")
             break
         }
     }
@@ -78,32 +78,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 读取剪贴板文本
         let fileURLs = getClipFileURL()
         if fileURLs.count == 0 {
-            NSLog("剪贴板读取出错")
+            HGLog.Log("剪贴板读取出错")
             return
         }
-        NSLog("成功读取到文本 %@", fileURLs)
+        HGLog.Log("成功读取到文本 " + fileURLs.map{$0.absoluteString}.joined(separator: ","))
         // 建立目录
         if createPath(path: TMP_DIR) == false {
-            NSLog("建立目录出错")
+            HGLog.Log("建立目录出错")
             return
         }
-        NSLog("成功创建缓存目录 %@", TMP_DIR.absoluteString)
+        HGLog.Log("成功创建缓存目录 " + TMP_DIR.absoluteString)
         // 初始化压缩文件名字
         let zipFileName = fileURLs[0].lastPathComponent
         let zipFileFullPath = TMP_DIR.appendingPathComponent(zipFileName + ".zip")
-        NSLog("成功创建压缩文件地址 %@", zipFileFullPath.absoluteString)
+        HGLog.Log("成功创建压缩文件地址 " + zipFileFullPath.absoluteString)
         // 创建zip
         if zipFiles(filesPath: fileURLs, zipPath: zipFileFullPath) == false {
-            NSLog("压缩文件出错")
+            HGLog.Log("压缩文件出错")
             return
         }
-        NSLog("成功创建 zip 文件")
+        HGLog.Log("成功创建 zip 文件")
         // 粘贴到剪贴板
         if setClipFileURL(zipFileFullPath.absoluteString) == false{
-            NSLog("放入剪贴板出错")
+            HGLog.Log("放入剪贴板出错")
             return
         }
-        NSLog("成功放入剪贴板")
+        HGLog.Log("成功放入剪贴板")
     }
     
     func getClipFileURL() -> [URL]{

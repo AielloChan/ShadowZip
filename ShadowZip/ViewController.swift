@@ -9,31 +9,32 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
     
     @IBAction func openTmpDir(_ sender: NSButton) {
         NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: TMP_DIR.absoluteString)
+        HGLog.Log("打开缓存目录成功")
     }
     
     @IBAction func cleanUpTmpDir(_ sender: NSButton) {
         let fileManager = FileManager.default
         do {
             try fileManager.removeItem(atPath: TMP_DIR.absoluteString)
-            print("移除缓存文件成功")
+            HGLog.Log("移除缓存文件成功")
         }
         catch {
-            print("移除缓存文件失败")
+            HGLog.Log("移除缓存文件失败")
         }
     }
     
@@ -43,9 +44,8 @@ class ViewController: NSViewController {
     
     @IBAction func logoClick(_ sender: NSButton) {
         if let url = URL(string: "https://github.com/AielloChan/ShadowZip"), NSWorkspace.shared.open(url) {
-            print("default browser was successfully opened")
+            HGLog.Log("打开网址成功")
         }
     }
-    
 }
 
