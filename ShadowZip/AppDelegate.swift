@@ -157,7 +157,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         // 不存在则创建
         do{
-            try fm.createDirectory(at: path, withIntermediateDirectories:true)
+            try fm.createDirectory(atPath: path.absoluteString, withIntermediateDirectories: true)
             return true
         }
         catch let error as NSError{
