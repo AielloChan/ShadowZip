@@ -4,6 +4,8 @@
 
 源起于我经常与朋友分享 macOS App，每次都需要将 App 压缩后发给朋友，然后再去删除那个压缩文件，现在有 ShadowZip，方便了很多！
 
+![ShadowZip](ShadowZip.png)
+
 ## 食用说明
 
 先打开 `ShadowZip` 这个软件，然后它会在你的状态栏处增加一个⚡️的图标，对！就是他！

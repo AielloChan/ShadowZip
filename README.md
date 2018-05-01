@@ -4,6 +4,8 @@
 
 A macOS app to help you from zip and delete zip file mess!
 
+![ShadowZip](ShadowZip.png)
+
 ## How to use
 
 Open ShadowZip, you'll see a icon in the `status bar`. 
