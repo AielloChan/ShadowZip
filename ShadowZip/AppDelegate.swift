@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         
         if let button = statusItem.button {
-            let icon = NSImage(named: NSImage.Name(rawValue: "statusBarButtonIcon"))
+            let icon = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonIcon"))
             icon?.isTemplate = true
             button.image = icon
             button.target = self
