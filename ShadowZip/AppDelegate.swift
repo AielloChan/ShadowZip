@@ -121,7 +121,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 清空剪贴板
         paseboard.clearContents()
         // 构造文件类型的 URL
-        let filePathURL = URL.init(fileURLWithPath: fileAbsURL).absoluteString
+        //  增加 removingPercentEncoding 防止链接被编码
+        //  解决被编码后粘贴失败的问题
+        let url = URL.init(fileURLWithPath: fileAbsURL.removingPercentEncoding!)
+        let filePathURL = url.absoluteString.removingPercentEncoding
         // 定义文件的粘贴类型
         let deprecatedFilenames = NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")
         // 放入剪贴板
