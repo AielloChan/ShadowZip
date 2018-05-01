@@ -16,7 +16,16 @@ You needn't care where the zip file is, just paste it to the right place!
 
 ## More
 
-Try right click ShadowZip status bar icon :) 
+Try right click ShadowZip status bar icon :)
+
+## Todo
+
+- ~~base functions~~
+- drag & drop
+- sound effect
+- using thread
+- progress
+- support zip password
 
 ## Dependence
 
