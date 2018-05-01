@@ -54,13 +54,6 @@
 			remoteGlobalIDString = 342545B51CE525B200336074;
 			remoteInfo = "Zip tvOS";
 		};
-		386993E8208A00B5009E7F63 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 386993D4208A008C009E7F63 /* Zip.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 343F50FE1C8DAEEC0028C434;
-			remoteInfo = "Zip OSX";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -86,7 +79,6 @@
 		38C2EB972088A4B10027CE7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38C2EB9A2088A4B10027CE7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38C2EB9C2088A4B10027CE7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38C2EB9D2088A4B10027CE7D /* ShadowZip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShadowZip.entitlements; sourceTree = "<group>"; };
 		38C2EBA52088AC250027CE7D /* PopoverFix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverFix.swift; sourceTree = "<group>"; };
 		38C2EBA72088C5870027CE7D /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,7 +135,6 @@
 				38C2EB972088A4B10027CE7D /* Assets.xcassets */,
 				38C2EB992088A4B10027CE7D /* Main.storyboard */,
 				38C2EB9C2088A4B10027CE7D /* Info.plist */,
-				38C2EB9D2088A4B10027CE7D /* ShadowZip.entitlements */,
 				38193F532089AA7000E5A5D6 /* HGLog.swift */,
 			);
 			path = ShadowZip;
@@ -171,7 +162,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				386993E9208A00B5009E7F63 /* PBXTargetDependency */,
 			);
 			name = ShadowZip;
 			productName = ShadowZip;
@@ -287,14 +277,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		386993E9208A00B5009E7F63 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Zip OSX";
-			targetProxy = 386993E8208A00B5009E7F63 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		38C2EB992088A4B10027CE7D /* Main.storyboard */ = {

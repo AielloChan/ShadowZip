@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  ShadowZip
 //
-//  Created by 陈晓龙 on 19/04/2018.
-//  Copyright © 2018 陈晓龙. All rights reserved.
+//  Created by Aiello on 19/04/2018.
+//  Copyright © 2018 Aiello. All rights reserved.
 //
 
 import Cocoa
@@ -105,9 +105,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         HGLog.Log("成功放入剪贴板")
     }
-    
+    // 从剪贴板中读取复制的文件地址
+    //  如果复制的不是文件，则返回空的数据
     func getClipFileURL() -> [URL]{
         let paseboard = NSPasteboard.general
+        // 从剪贴板中读取 URL 类型的数据
         let fileURLs = paseboard.readObjects(forClasses: [NSURL.self], options: nil) as! [URL]
         return fileURLs
     }
@@ -127,9 +129,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
-    //
+    // 压缩文件
+    //  这里使用了一个开源库 Zip:https://github.com/marmelroy/Zip
     func zipFiles(filesPath: [URL], zipPath: URL)->Bool{
         do {
+            // 使用了没有密码的压缩
+            //  如果后期需要可增加密码压缩功能
             try Zip.zipFiles(paths: filesPath, zipFilePath: zipPath, password: nil, progress: { (progress) -> () in
                 print(progress)
             })
@@ -138,15 +143,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return false
         }
     }
-    
+    // 根据传入 URL 建立路径
     func createPath(path:URL) -> Bool{
         let fm = FileManager()
+        // 判断是否已经存在
         if fm.fileExists(atPath: path.absoluteString) {
             return true
         }
-        let filePath = URL.init(fileURLWithPath: path.absoluteString)
+        // 不存在则创建
         do{
-            try fm.createDirectory(at: filePath, withIntermediateDirectories:true)
+            try fm.createDirectory(at: path, withIntermediateDirectories:true)
             return true
         }
         catch let error as NSError{
@@ -154,7 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return false
         }
     }
-    
+    // 切换 popover 的显示隐藏状态
     func togglePopover(_ sender: AnyObject?) {
         if popover.isShown {
             closePopover(sender)
@@ -162,16 +168,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             showPopover(sender)
         }
     }
-    
+    // 显示 popover
     func showPopover(_ sender: AnyObject?) {
         if let button = statusItem.button {
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+            // 将全局的事件监听器打开
+            //  监听点击事件，以便关闭 popover
             eventMonitor?.start()
         }
     }
-    
+    // 隐藏 popover
     func closePopover(_ sender: AnyObject?) {
         popover.performClose(sender)
+        // 关闭全局事件监听
         eventMonitor?.stop()
     }
 }

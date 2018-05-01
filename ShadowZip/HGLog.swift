@@ -2,8 +2,8 @@
 //  HGLog.swift
 //  ShadowZip
 //
-//  Created by 陈晓龙 on 20/04/2018.
-//  Copyright © 2018 陈晓龙. All rights reserved.
+//  Created by Aiello on 20/04/2018.
+//  Copyright © 2018 Aiello. All rights reserved.
 //
 
 import Foundation
