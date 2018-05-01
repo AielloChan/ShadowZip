@@ -110,8 +110,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func getClipFileURL() -> [URL]{
         let paseboard = NSPasteboard.general
         // 从剪贴板中读取 URL 类型的数据
-        let fileURLs = paseboard.readObjects(forClasses: [NSURL.self], options: nil) as! [URL]
-        return fileURLs
+        let urls = paseboard.readObjects(forClasses: [NSURL.self], options: nil) as! [URL]
+        // 我们只处理文件类型的数据，所以直接从剪贴板中过滤出文件路径
+        let fileURLs = urls.filter({$0.absoluteString.starts(with: "file")})
+        return fileURLs:bug:
     }
     // 将文件放入剪贴板
     func setClipFileURL(_ fileAbsURL: String) -> Bool{
