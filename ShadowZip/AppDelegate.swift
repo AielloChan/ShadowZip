@@ -99,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         HGLog.Log("成功创建 zip 文件")
         // 粘贴到剪贴板
-        if setClipFileURL(zipFileFullPath.absoluteString) == false{
+        if setClipFileURL(zipFileFullPath.absoluteString, fileName: zipFileName) == false{
             HGLog.Log("放入剪贴板出错")
             return
         }
@@ -108,30 +108,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // 从剪贴板中读取复制的文件地址
     //  如果复制的不是文件，则返回空的数据
     func getClipFileURL() -> [URL]{
-        let paseboard = NSPasteboard.general
+        let pasteboard = NSPasteboard.general
         // 从剪贴板中读取 URL 类型的数据
-        let urls = paseboard.readObjects(forClasses: [NSURL.self], options: nil) as! [URL]
+        let urls = pasteboard.readObjects(forClasses: [NSURL.self], options: nil) as! [URL]
         // 我们只处理文件类型的数据，所以直接从剪贴板中过滤出文件路径
         let fileURLs = urls.filter({$0.absoluteString.starts(with: "file")})
         return fileURLs
     }
     // 将文件放入剪贴板
-    func setClipFileURL(_ fileAbsURL: String) -> Bool{
-        let paseboard = NSPasteboard.general
+    func setClipFileURL(_ fileAbsURL: String, fileName: String) -> Bool{
+        let pasteboard = NSPasteboard.general
         // 清空剪贴板
-        paseboard.clearContents()
+        pasteboard.clearContents()
         // 构造文件类型的 URL
         //  增加 removingPercentEncoding 防止链接被编码
         //  解决被编码后粘贴失败的问题
-        let url = URL.init(fileURLWithPath: fileAbsURL.removingPercentEncoding!)
-        let filePathURL = url.absoluteString.removingPercentEncoding
+//        let url = URL.init(fileURLWithPath: fileAbsURL.removingPercentEncoding!)
+        let decodeFileAbsURL = fileAbsURL.removingPercentEncoding!
         // 定义文件的粘贴类型
+        let deprecatedString = NSPasteboard.PasteboardType(rawValue: "NSStringPboardType")
         let deprecatedFilenames = NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")
         // 放入剪贴板
-        if paseboard.setPropertyList([filePathURL], forType: deprecatedFilenames) {
+        if pasteboard.setPropertyList([decodeFileAbsURL], forType: deprecatedFilenames) &&
+            pasteboard.setString(fileName, forType: deprecatedString) {
             return true
         }
-        return true
+        return false
     }
     
     // 压缩文件
