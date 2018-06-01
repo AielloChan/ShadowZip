@@ -1,0 +1,16 @@
+PODS:
+  - Zip (1.1.0)
+
+DEPENDENCIES:
+  - Zip
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Zip
+
+SPEC CHECKSUMS:
+  Zip: 8877eede3dda76bcac281225c20e71c25270774c
+
+PODFILE CHECKSUM: fb735eaa2e293991c4dfd71b2342c5fc3e0a34f4
+
+COCOAPODS: 1.5.3
