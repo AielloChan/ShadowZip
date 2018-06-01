@@ -4,7 +4,7 @@
 
 源起于我经常与朋友分享 macOS App，每次都需要将 App 压缩后发给朋友，然后再去删除那个压缩文件，现在有 ShadowZip，方便了很多！
 
-<img src="ShadowZip.png" alt="ShadowZip" title="ShadowZip" style="width: 10rem;">
+![ShadowZip](ShadowZip.png)
 
 ## 食用说明
 
