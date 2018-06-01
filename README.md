@@ -4,7 +4,7 @@
 
 A macOS app to help you from zip and delete zip file mess!
 
-![ShadowZip](ShadowZip.png)
+<img src="ShadowZip.png" alt="ShadowZip" title="ShadowZip" style="width: 10rem;">
 
 ## How to use
 
